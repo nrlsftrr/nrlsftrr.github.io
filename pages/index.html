@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo List</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		.todo {
+			margin-bottom: 10px;
+		}
+		.completed {
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+	<div class="container mt-3">
+		<h1>Todo List</h1>
+		<form id="todo-form">
+			<div class="form-group">
+				<label for="todo-input">Bikin Todo apa ya?</label>
+				<input type="text" id="todo-input" class="form-control">
+			</div>
+			<button type="submit" class="btn btn-primary">Add Todo</button>
+		</form>
+		<ul id="todo-list" class="list-group mt-3">
+		</ul>
+	</div>
+	<script>
+		// Get the todo list from localStorage, or initialize it if it doesn't exist
+		let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+
+		// Render the todo list
+		function renderTodoList() {
+			const todoListElement = document.getElementById('todo-list');
+			todoListElement.innerHTML = '';
+			todoList.forEach((todo, index) => {
+				const todoElement = document.createElement('li');
+				todoElement.classList.add('list-group-item', 'todo');
+				todoElement.innerText = todo.text;
+				if (todo.completed) {
+					todoElement.classList.add('completed');
+				}
+				const deleteButton = document.createElement('button');
+				deleteButton.classList.add('btn', 'btn-danger', 'float-right');
+				deleteButton.innerText = 'Delete';
+				deleteButton.addEventListener('click', (event) => {
+					event.preventDefault();
+					todoList.splice(index, 1);
+					saveTodoList();
+					renderTodoList();
+				});
+				const completeButton = document.createElement('button');
+				completeButton.classList.add('btn', 'btn-success', 'float-right', 'mr-2');
+				completeButton.innerText = 'Complete';
+				completeButton.addEventListener('click', (event) => {
+					event.preventDefault();
+					todo.completed = true;
+					saveTodoList();
+					renderTodoList();
+				});
+				todoElement.appendChild(deleteButton);
+				todoElement.appendChild(completeButton);
+				todoListElement.appendChild(todoElement);
+			});
+		}
+
+		// Add a new todo to the list
+		function addTodo() {
+			const todoInputElement = document.getElementById('todo-input');
+			const todoText = todoInputElement.value.trim();
+			if (todoText) {
+				todoList.push({ text: todoText, completed: false });
+				saveTodoList();
+				renderTodoList();
+				todoInputElement.value = '';
+			}
+		}
+
+		// Save the todo list to localStorage
+		function saveTodoList() {
+			localStorage.setItem('todoList', JSON.stringify(todoList));
+		}
+
+		// Handle the submit event of the todo form
+		const todoFormElement = document.getElementById('todo-form');
+		todoFormElement.addEventListener('submit', (event) => {
+			event.preventDefault();
+			addTodo();
+		});
+
+		// Render the initial todo list
+		renderTodoList();
+	</script>
+	
+</body>
+</html>
