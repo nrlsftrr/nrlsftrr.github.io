@@ -1,0 +1,142 @@
+* {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper {
+    width: 1100px;
+    margin: auto;
+    position: relative;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 800;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    color:black;
+
+}
+
+.menu {
+    float: center;
+}
+
+nav {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    line-height: 80px;
+    
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+nav ul li a {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    text-decoration: none;
+}
+
+body{
+    background: whitesmoke;
+    color: black;
+    width: 100%;
+    max-width: 980px;
+    margin: 0;
+}
+
+.flex-utama{
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+    color: black;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    gap: 20px
+}
+
+.flex.sub1{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    color: black;
+}
+
+.container-card{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card-item{
+    background:#fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+    margin:1em;
+    padding: 1em;
+    display:inline-block;
+    width: 75%;
+    display: flex;
+}
+
+.card-image{
+    width: 50%;
+    border-radius: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.card-content{
+    padding: 0 20px;
+    margin: 0 1em;
+    width: 50%;
+}
+
+.card-title, .card-text{
+    color: black;
+}
+
+.flex-sub2{
+    width: 20%;
+    padding: 10px;
+    margin: 20px 0px:
+}
+
+@media screen and (max-width:600px){
+    body{
+        background:gray;
+
+    }
+    .card{
+        width:100%;
+        display: block;
+    }
+    .card-image{
+        width:100%;
+    }
+    .card-content{
+        display:block;
+    }
+    .card-text{
+        display: none;
+    }
+}
+
